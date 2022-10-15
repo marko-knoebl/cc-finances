@@ -11,7 +11,7 @@ let bankAccount = {
 function main() {
   console.log("Welcome to your personal finance manager");
   while (true) {
-    let choice = prompt(
+    console.log(
       "What do you want to do?\n" +
         "[b] show current balance\n" +
         "[t] show all transactions\n" +
@@ -20,6 +20,7 @@ function main() {
         "[s] show statistics\n" +
         "[q] quit"
     );
+    let choice = prompt();
     if (choice === "q") {
       break;
     } else if (choice === "b") {
