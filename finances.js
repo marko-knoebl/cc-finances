@@ -30,8 +30,32 @@ function main() {
       break;
     } else if (choice === "b") {
       showCurrentBalance();
+    } else if (choice === "bd") {
+      showBalanceForSpecificDate();
+    } else if (choice === "t") {
+        
     }
   }
 }
 
+
+function showCurrentBalance () {
+  let sum = bankAccount.startBalance;
+  for (let allTransactions of bankAccount.transactions) {
+    sum += allTransactions.amount;
+  }
+  console.log(`Current balance: ${sum}`);
+}
+
+function showBalanceForSpecificDate () {
+  console.log("Please insert the date (e.g. 2022-09-31) ");
+  let balanceOfSpecificDate = 0;
+  let userInputDate = prompt();
+  for (let allTransactions of bankAccount.transactions) {
+    if (allTransactions.date === userInputDate) {
+      balanceOfSpecificDate += allTransactions.amount;
+    }
+  }
+  console.log(balanceOfSpecificDate);
+}
 main();
