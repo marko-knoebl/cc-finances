@@ -7,8 +7,8 @@ let prompt = require("prompt-sync")();
 let bankAccount = {
   startBalance: 1000,
   transactions: [
-    { id: 1, date: "2022-09-31", amount: 2000, title: "salary" },
-    { id: 2, date: "2022-09-31", amount: -29.34, title: "supermarket" },
+    {id: 1, date: "2022-09-31", amount: 2000, title: "salary" },
+    {id: 2, date: "2022-09-31", amount: -29.34, title: "supermarket" },
   ],
 };
 
@@ -52,8 +52,7 @@ function showCurrentBalance() {
 }
 
 function showBalanceForSpecificDate() {
-  console.log("Please insert the date (e.g 2022-09-31) ");
-  let balanceOfSpecificDate = 0;
+  console.log("Please insert the date (year-month-day) ");
   let userInputDate = prompt();
   for (let allTransactions of bankAccount.transactions) {
     if (allTransactions.date === userInputDate) {
@@ -64,8 +63,9 @@ function showBalanceForSpecificDate() {
 }
 
 function showAllTransactions() {
-  for (let showTransactions of bankAccount.transactions) {
-    console.log(showTransactions);
+  for (let i = 0; i < bankAccount.transactions.length; i++) {
+    bankAccount.transactions[i].id = i+1;
+    console.log(bankAccount.transactions[i]);
   }
 }
 
@@ -89,17 +89,8 @@ function deleteATransaction() {
     console.log(bankAccount.transactions[i]);
   }
   let userInput = prompt();
-  parseInt(userInput);
   bankAccount.transactions.splice(userInput - 1, 1);
-  for (let j = 0; j < bankAccount.transactions.length; j++) {
-    bankAccount.transactions[j].id = bankAccount.transactions[j].id - 1;
-  }
-  if (bankAccount.transactions.id === 0 && bankAccount.transactions.length === 1) {
-    bankAccount.transactions[0].id += 1;
-  }
-  if (bankAccount.transactions.length === 0) {
-    console.log("There are no transactions.");
-  }
+   
 }
 
 main();
