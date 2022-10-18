@@ -9,6 +9,7 @@ let bankAccount = {
   transactions: [
     {id: 1, date: "2022-09-31", amount: 2000, title: "salary" },
     {id: 2, date: "2022-09-31", amount: -29.34, title: "supermarket" },
+    {id: 3, date: "2022-10-29", amount: -200.34, title: "supermarket" }
   ],
 };
 
@@ -54,9 +55,10 @@ function showCurrentBalance() {
 function showBalanceForSpecificDate() {
   console.log("Please insert the date (year-month-day) ");
   let userInputDate = prompt();
-  for (let allTransactions of bankAccount.transactions) {
-    if (allTransactions.date === userInputDate) {
-      balanceOfSpecificDate += allTransactions.amount;
+  let balanceOfSpecificDate = bankAccount.startBalance;
+  for (let i = 0; i < bankAccount.transactions.length; i++) {
+    if (bankAccount.transactions[i].date <= userInputDate) {
+      balanceOfSpecificDate += bankAccount.transactions[i].amount;
     }
   }
   console.log(balanceOfSpecificDate);
